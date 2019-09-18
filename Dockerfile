@@ -8,6 +8,9 @@ FROM darkcheyenne/docker-rolling-updated:latest
 #####################################
 RUN apt-get update && apt-get install -y software-properties-common && add-apt-repository ppa:ondrej/apache2 && apt-get update && apt-get install -y php-curl ftp zip unzip php7.2-zip curl php7.2-common s3cmd php7.2-gd php-xml php-xml brotli memcached php-memcached nasm apache2 libapache2-mod-php7.2 php-fpm php7.2-mbstring php7.2-mysql wget && rm -rf /var/lib/apt/lists/* && rm -R /var/www/html/*
 
+RUN a2dismod cache && a2dismod cache_disk
+
+
 COPY ./my-log.conf /etc/apache2/conf-available/log.conf
 
 #####################################
